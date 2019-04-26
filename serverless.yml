@@ -220,18 +220,26 @@ resources:
                     - dynamodb:DeleteItem
                     - dynamodb:Scan
                   Resource:
-                    Fn::Join:
-                    - ''
-                    - - 'arn:aws:dynamodb:'
-                      - Ref: AWS::Region
-                      - ':'
-                      - Ref: AWS::AccountId
-                      - ':table/'
-                      - ${env:SERVICE}
-                      - '-'
-                      - ${self:provider.stage}
-                      - '.'
-                      - ${self:provider.stage}
+                    - Fn::Join:
+                      - ''
+                      - - 'arn:aws:dynamodb:'
+                        - Ref: AWS::Region
+                        - ':'
+                        - Ref: AWS::AccountId
+                        - ':table/'
+                        - ${env:SERVICE}
+                        - '.'
+                        - ${self:provider.stage}
+                    - Fn::Join:
+                      - ''
+                      - - 'arn:aws:dynamodb:'
+                        - Ref: AWS::Region
+                        - ':'
+                        - Ref: AWS::AccountId
+                        - ':table/'
+                        - ${env:SERVICE}
+                        - '.nameEmailMapping.'
+                        - ${self:provider.stage}
                 - Effect: Allow
                   Action:
                     - logs:CreateLogGroup
