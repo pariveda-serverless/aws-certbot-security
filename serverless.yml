@@ -228,6 +228,8 @@ resources:
                         - Ref: AWS::AccountId
                         - ':table/'
                         - ${env:SERVICE}
+                        - '-'
+                        - ${self:provider.stage}
                         - '.'
                         - ${self:provider.stage}
                     - Fn::Join:
@@ -238,8 +240,7 @@ resources:
                         - Ref: AWS::AccountId
                         - ':table/'
                         - ${env:SERVICE}
-                        - '.nameEmailMapping.'
-                        - ${self:provider.stage}
+                        - '.nameEmailMapping'
                 - Effect: Allow
                   Action:
                     - logs:CreateLogGroup
